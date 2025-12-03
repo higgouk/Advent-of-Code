@@ -8,15 +8,19 @@ wheel_size = 100
 for line in instructions:
     direction = line[0]
     distance = int(line[1:])
-   # print(f"direction: ", direction, "distance: ", distance)
+    print(f"direction:", direction, "distance:", distance)
 
     if direction == "R":
         zero_count += (current_number + distance) // wheel_size
         current_number = (current_number + distance) % wheel_size
-       # print(f"zeros: ", zero_count, "current number: ", current_number)
-    else:
-        zero_count += (distance - 1 + (wheel_size - current_number)) // wheel_size
+        print(f"zeros:", zero_count, "current number:", current_number)
+    elif current_number == 0:
+        zero_count += (current_number + distance) // wheel_size
         current_number = (current_number - distance) % wheel_size
-    # print(f"direction: ", direction, "distance: ", distance)
+        print(f"zeros:", zero_count, "current number:", current_number)
+    else:
+        zero_count += (wheel_size - current_number + distance) // wheel_size
+        current_number = (current_number - distance) % wheel_size
+        print(f"zeros:", zero_count, "current number:", current_number)
 
 print(zero_count)
