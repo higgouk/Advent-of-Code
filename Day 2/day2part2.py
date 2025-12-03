@@ -6,6 +6,7 @@ total = 0
 def equal_parts(s, n):
     part_length = len(s) // n
     parts = [s[i:i + part_length] for i in range(0, len(s), part_length)]
+    # print(parts)
     if len(set(parts)) == 1:
         return True
     return None
