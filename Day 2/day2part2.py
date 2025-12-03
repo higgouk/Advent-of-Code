@@ -10,13 +10,13 @@ def equal_parts(s, n):
         return True
     return None
 
-
 for product_range in product_ranges:
     (start, end) = product_range.split("-")
     for product in range(int(start), int(end) + 1):
         string = str(product)
-        for length in range(len(string) + 1):
-            if equal_parts(string, len(string)):
+        length = len(string)
+        for l in range(2, length):
+            if equal_parts(string, l):
                 total += product
 
 print(total)
