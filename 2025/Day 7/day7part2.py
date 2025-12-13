@@ -1,28 +1,22 @@
-with open('day7dataTEST') as file:
-    data = file.read().splitlines()
-    
-grid = [list(row) for row in data]
+from collections import defaultdict
 
-print(grid)
-current_beams = set()
-total_splitters = 21
-timelines = 1
-splits = 0
+with open('day7data') as file:
+    lines = file.read().splitlines()
 
-for row_index, row in enumerate(grid):
-    if "S" in row:
-        current_beams.add(row.index('S'))
-    elif "^" in row:
-        for char_index, char in enumerate(row):
-            if char == '^':
-                if char_index in current_beams:
-                    current_beams.remove(char_index)
-                    current_beams.add(char_index-1)
-                    splits += 1
-                    break
-    elif row_index == len(grid)-1:
-        
+beams = defaultdict(int)
+splitters = 0
 
+start_col = lines[0].index('S')
+beams[start_col] = 1
 
-print("timelines", timelines)
-print("splits", splits)
+for line in lines[::2]:
+    for col in tuple(beams.keys()):
+        if line[col] == '^':
+            splitters += 1
+            count = beams[col]
+            beams[col - 1] += count
+            beams[col + 1] += count
+            del beams[col]
+
+print("splitters", splitters)
+print("timelines", sum(beams.values()))
