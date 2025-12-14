@@ -17,21 +17,21 @@ for index, line1 in enumerate(data):
             pairs.append(tuple)
     
 sorted_pairs = sorted(pairs, key=lambda t: t[2])
-thousant_shortest = sorted_pairs[0:1000]
+thousand_shortest = sorted_pairs[0:1000]
 circuits = []
 
-while len(thousant_shortest) > 0:
+while len(thousand_shortest) > 0:
     circuit = []
-    circuit.append(thousant_shortest[0][:2])
-    thousant_shortest.pop(0)
+    circuit.append(thousand_shortest[0][:2])
+    thousand_shortest.pop(0)
 
     for c in circuit:
-        for p1, p2, d in thousant_shortest:
+        for p1, p2, d in thousand_shortest:
             if p1 in c and p2 in c:
-                thousant_shortest.remove((p1, p2, d))
+                thousand_shortest.remove((p1, p2, d))
             elif p1 in c or p2 in c:
                 circuit.append((p1, p2))
-                thousant_shortest.remove((p1, p2, d))
+                thousand_shortest.remove((p1, p2, d))
     circuits.append(circuit)
 
 circuit_lengths = []
