@@ -35,7 +35,6 @@ while len(thousand_shortest) > 0:
     circuits.append(circuit)
 
 circuit_lengths = []
-
 for c in circuits:
     junctions = {point for p1, p2 in c for point in (p1, p2)}
     circuit_lengths.append(len(junctions))
